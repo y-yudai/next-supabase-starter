@@ -54,7 +54,7 @@ SupaBaseには認証情報を格納する【Auth】が存在する。
 
 | 物理名  | 論理名     | 型      | NotNull | 備考                                 |
 |------|---------|--------|---------|------------------------------------|
-| error | 処理メッセージ | string | o       | 詳細は[https://supabase.com/docs/guides/auth/debugging/error-codes](./共通エラーメッセージ.md)参照 |
+| error | 処理メッセージ | string | o       | 詳細は【　https://supabase.com/docs/guides/auth/debugging/error-codes　】参照 |
 
 ---
 
