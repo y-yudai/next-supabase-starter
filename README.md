@@ -1,4 +1,3 @@
-![image](https://github.com/y-yudai/next-supabase-starter/docs/image/architecture.png)
 <h1 align="center">⚡ Next.js and Supabase Simple Starter Kit⚡</h1>
 
 <p align="center">
