@@ -1,37 +1,31 @@
 # ログインAPI
 
-```properties
-[post] https://<supabase-project>.supabase.co/auth/v1/token
+## 使い方
+
+```
+import {supabase} from "@/utils/supabase/client"
+
+　 supabase.auth.signInWithPassword
 ```
 
 ## 機能概要
 
 - ログインアカウントとパスワードで認証を行う
-- 
 
 ## 処理詳細
 
 ### 1. ログインアカウント・パスワード認証
 
-SupaBaseには認証情報を格納する【Auth】が存在する。
-【Auth】から利用するアカウント情報を検索する。
-下記条件を満たした場合、認証に成功する。
+- Supabaseには認証情報を格納する【Auth】が存在する。
+- 【Auth】から利用するアカウント情報を検索する。
+- 下記条件を満たした場合、認証に成功する。
 
 - メールとパスワードが一致するアカウントが存在する。
-- 
 ---
 
 ## リクエスト
 
-### PathParameter
-
-- 無し
-
-### QueryString
-
-- 無し
-
-### RequestBody
+### Parameter
 
 | 物理名      | 項目名   | 型     | 必須 | 備考     |
 |----------|-------| ------| ----|-----------|
@@ -57,14 +51,6 @@ SupaBaseには認証情報を格納する【Auth】が存在する。
 | error | 処理メッセージ | string | o       | 詳細は【　https://supabase.com/docs/guides/auth/debugging/error-codes　】参照 |
 
 ---
-
-## 動作例
-
-```bash
-curl -v -X POST https://<supabase-project>.supabase.co/auth/v1/token \
-  -H "Content-Type: application/json" \
-  -d '{ "email": "test", "password": "test" }'
-```
 
 ### 正常
 

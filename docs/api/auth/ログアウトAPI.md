@@ -1,7 +1,11 @@
 # ログアウトAPI
 
-```properties
-[post] https://<supabase-project>.supabase.co/auth/v1/logout
+## 使い方
+
+```
+import {supabase} from "@/utils/supabase/client"
+
+　 supabase.auth.signOut
 ```
 
 ## 機能概要
@@ -17,15 +21,7 @@
 
 ## リクエスト
 
-### PathParameter
-
-- 無し
-
-### QueryString
-
-- 無し
-
-### RequestBody
+### Parameter
 
 - 無し
 
@@ -37,7 +33,6 @@
 
 - 無し
 
-
 ### 403 / 422 / 429 / 500 / 501 (エラー)
 
 | 物理名  | 論理名     | 型      | NotNull | 備考                                                                   |
@@ -46,14 +41,7 @@
 
 ---
 
-## 動作例
-
-```bash
-curl -v -X POST https://<supabase-project>.supabase.co/auth/v1/token \
-  -H "Content-Type: application/json" \
-```
-
-### 正常
+### 正常 
 
 ```jsonc
 ```
