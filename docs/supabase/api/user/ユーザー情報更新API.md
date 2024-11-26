@@ -36,15 +36,9 @@ import {supabase} from "@/utils/supabase/client"
 | country_name | 国名       | string | o     |         |
 | zip          | 郵便番号     | string | o     |         |
 | address1     | 住所1      | string | o     |         |
-| address2     | 住所2      | string | o     |         |
-| address3     | 住所3      | string | o     |         |
-| address4     | 住所4      | string | o     |         |
-| address5     | 住所5      | string | o     |         |
 | tel          | 電話番号     | string | o     |         |
 | gender       | 性別       | string | o     |         |
 | birthday     | 生年月日     | string | o     |         |
-| nick_name    | ニックネーム   | string | o     |         |
-| image        | プロフィール写真 | string | o     |         |
 | self_comment | 自己紹介     | string | o     |         |
 
 ---
@@ -70,16 +64,7 @@ import {supabase} from "@/utils/supabase/client"
 
 ```jsonc
 {
-  "session": {
-    provider_token:xxxxx,
-    access_token:xxxxx,
-    ・・・
-  },
-  "user": {
-    id: xxxx,
-    email:xxxxx@xxxx.co.jp
-    ・・・
-  }
+  "count": xx
 }
 ```
 
