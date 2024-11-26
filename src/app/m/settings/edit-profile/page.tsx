@@ -7,7 +7,7 @@ export function generateMetadata(): Metadata {
   }
 }
 
-export default function ProfileEdit() {
+export default function EditProfile() {
   return (
     <div>
       <PageClient />
