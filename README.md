@@ -9,6 +9,7 @@
 <br/>
 
 ## Features
+
 - Next.js 15 (App Router)
 - Supabase
 - React 18
@@ -16,12 +17,12 @@
 - [Tailwind](https://tailwindcss.com/)
 - [shadcn/ui](https://ui.shadcn.com/)
 
-
 ## Clone and run locally
 
 1. You'll first need a Supabase project which can be made [via the Supabase dashboard](https://database.new)
 
 2. Create a Next.js app using the Supabase Starter template npx command
+
    ```bash
    npx create-next-app -e https://github.com/y-yudai/next-supabase-starter
    ```

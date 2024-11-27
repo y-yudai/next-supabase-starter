@@ -3,7 +3,7 @@ import PageClient from './page.client'
 
 export function generateMetadata(): Metadata {
   return {
-    title:``
+    title: ``,
   }
 }
 
@@ -12,5 +12,5 @@ export default function ChangePassword() {
     <div>
       <PageClient />
     </div>
-  );
+  )
 }

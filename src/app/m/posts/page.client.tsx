@@ -1,11 +1,5 @@
-"use client"
-
-import { useEffect, useState } from "react"
+'use client'
 
 export default function PageClient() {
-
-  return (
-    <div>
-    </div>
-  );
+  return <div></div>
 }
