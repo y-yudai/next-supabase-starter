@@ -16,8 +16,7 @@ import {supabase} from "@/utils/supabase/client"
 
 ### 1. destroy session
 
-Destroy the session information currently linked to SupaBase.
----
+## Destroy the session information currently linked to SupaBase.
 
 ## Request
 
@@ -35,31 +34,31 @@ Destroy the session information currently linked to SupaBase.
 
 ### 403 / 422 / 429 / 500 / 501 (error)
 
-| Physical Name  | Logical Name     | Type      | NotNull | Remarks      |
-|------|---------|--------|---------|------------------------------------|
-| error |processing message | string | o       | 【　https://supabase.com/docs/guides/auth/debugging/error-codes　】for details  |
+| Physical Name | Logical Name       | Type   | NotNull | Remarks                                                                        |
+| ------------- | ------------------ | ------ | ------- | ------------------------------------------------------------------------------ |
+| error         | processing message | string | o       | 【　https://supabase.com/docs/guides/auth/debugging/error-codes　】for details |
 
 ---
 
 ### success
 
 ```jsonc
+
 ```
 
 ### 403:　Sent in unusual circumstances where certain authentication features are not available to the user.
 
 ```jsonc
 {
-  "error": " Forbidden"
+  "error": " Forbidden",
 }
-
 ```
 
 ### 422: Sent when an API request has been accepted but cannot be processed because the user or authentication server is unable to fulfill the request.
 
 ```jsonc
 {
-  "error": " Unprocessable Entity"
+  "error": " Unprocessable Entity",
 }
 ```
 
@@ -67,15 +66,15 @@ Destroy the session information currently linked to SupaBase.
 
 ```jsonc
 {
-  "error": "Too Many Requests"
+  "error": "Too Many Requests",
 }
 ```
 
-### 500:  Server error
+### 500: Server error
 
 ```jsonc
 {
-  "error": "Internal Server Error"
+  "error": "Internal Server Error",
 }
 ```
 
@@ -83,6 +82,6 @@ Destroy the session information currently linked to SupaBase.
 
 ```jsonc
 {
-  "error": "Not Implemented"
+  "error": "Not Implemented",
 }
 ```

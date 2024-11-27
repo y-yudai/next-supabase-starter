@@ -21,24 +21,25 @@ import {supabase} from "@/utils/supabase/client"
 - If the following conditions are met, authentication is successful.
 
   ・ Account data exists.
+
 ---
 
 ## リクエスト
 
 ### Parameter
 
-| Column Name | Item Name   | Type | Required | Remarks |
-|--------------|-------------| ------| ----|-----------|
-| id           | AccountId   | string | o    |           |
-| email        | Mail        | string | o    |           |
-| first_name   | FirstName   | string | o     |         |
-| last_name    | Last_name   | string | o     |         |
-| country_name | CountryName | string | o     |         |
-| zip          | ZipCode     | string | o     |         |
-| address1     | Address     | string | o     |         |
-| tel          | TelNumber   | string | o     |         |
-| gender       | Gender      | string | o     |         |
-| birthday     | Birthday    | string | o     |         |
+| Column Name  | Item Name   | Type   | Required | Remarks |
+| ------------ | ----------- | ------ | -------- | ------- |
+| id           | AccountId   | string | o        |         |
+| email        | Mail        | string | o        |         |
+| first_name   | FirstName   | string | o        |         |
+| last_name    | Last_name   | string | o        |         |
+| country_name | CountryName | string | o        |         |
+| zip          | ZipCode     | string | o        |         |
+| address1     | Address     | string | o        |         |
+| tel          | TelNumber   | string | o        |         |
+| gender       | Gender      | string | o        |         |
+| birthday     | Birthday    | string | o        |         |
 
 ---
 
@@ -46,16 +47,15 @@ import {supabase} from "@/utils/supabase/client"
 
 ### 200 (success)
 
-| Physical Name | Logical Name | Type    | NotNull | Remarks  |
-|-------|-------------|--------|---------|--------------------|
-| count | changeCount | number | o       |                    |
-
+| Physical Name | Logical Name | Type   | NotNull | Remarks |
+| ------------- | ------------ | ------ | ------- | ------- |
+| count         | changeCount  | number | o       |         |
 
 ### 403 / 422 / 429 / 500 / 501 (error)
 
-| Physical Name  | Logical Name     | Type      | NotNull | Remarks      |
-|------|---------|--------|---------|------------------------------------|
-| error |processing message | string | o       | 【　https://supabase.com/docs/guides/auth/debugging/error-codes　】for details  |
+| Physical Name | Logical Name       | Type   | NotNull | Remarks                                                                        |
+| ------------- | ------------------ | ------ | ------- | ------------------------------------------------------------------------------ |
+| error         | processing message | string | o       | 【　https://supabase.com/docs/guides/auth/debugging/error-codes　】for details |
 
 ---
 
@@ -71,16 +71,15 @@ import {supabase} from "@/utils/supabase/client"
 
 ```jsonc
 {
-  "error": " Forbidden"
+  "error": " Forbidden",
 }
-
 ```
 
 ### 422: Sent when an API request has been accepted but cannot be processed because the user or authentication server is unable to fulfill the request.
 
 ```jsonc
 {
-  "error": " Unprocessable Entity"
+  "error": " Unprocessable Entity",
 }
 ```
 
@@ -88,15 +87,15 @@ import {supabase} from "@/utils/supabase/client"
 
 ```jsonc
 {
-  "error": "Too Many Requests"
+  "error": "Too Many Requests",
 }
 ```
 
-### 500:  Server error
+### 500: Server error
 
 ```jsonc
 {
-  "error": "Internal Server Error"
+  "error": "Internal Server Error",
 }
 ```
 
@@ -104,6 +103,6 @@ import {supabase} from "@/utils/supabase/client"
 
 ```jsonc
 {
-  "error": "Not Implemented"
+  "error": "Not Implemented",
 }
 ```

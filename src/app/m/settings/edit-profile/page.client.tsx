@@ -1,18 +1,18 @@
-"use client"
+'use client'
 import {
   CardContent,
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
+} from '@/components/ui/card'
 
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
 
 export default function PageClient() {
   return (
-    <main className="mx-auto max-w-screen-md flex justify-center mt-12">
+    <main className="mx-auto mt-12 flex max-w-screen-md justify-center">
       <div className="w-[350px]">
         <CardHeader>
           <CardTitle>Settings</CardTitle>
@@ -36,7 +36,7 @@ export default function PageClient() {
           </form>
         </CardContent>
         <CardFooter className="flex flex-col">
-          <Button className='w-full'> Save</Button>
+          <Button className="w-full"> Save</Button>
         </CardFooter>
       </div>
     </main>

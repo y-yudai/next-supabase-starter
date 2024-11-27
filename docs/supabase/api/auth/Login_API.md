@@ -21,16 +21,17 @@ import {supabase} from "@/utils/supabase/client"
 - If the following conditions are met, authentication succeeds.
 
   ・ There is an account whose e-mail and password match.
+
 ---
 
 ## Request
 
 ### Parameter
 
-| Column Name | Item Name | Type | Required | Remarks |
-|-------------|-----------| ------| ----|-----------------|
-| email       | email     | string | o    |             |
-| password    | password  | string | o     |          |
+| Column Name | Item Name | Type   | Required | Remarks |
+| ----------- | --------- | ------ | -------- | ------- |
+| email       | email     | string | o        |         |
+| password    | password  | string | o        |         |
 
 ---
 
@@ -38,17 +39,16 @@ import {supabase} from "@/utils/supabase/client"
 
 ### 200 (success)
 
-| Physical Name | Logical Name | Type    | NotNull | Remarks  |
-|---------------|--------------|---------|---------|----------|
-| session       | session information      | object  | o    |     |
-| user          | account information      | object | o    |     |
-
+| Physical Name | Logical Name        | Type   | NotNull | Remarks |
+| ------------- | ------------------- | ------ | ------- | ------- |
+| session       | session information | object | o       |         |
+| user          | account information | object | o       |         |
 
 ### 403 / 422 / 429 / 500 / 501 (error)
 
-| Physical Name  | Logical Name     | Type      | NotNull | Remarks      |
-|------|---------|--------|---------|------------------------------------|
-| error |processing message | string | o       | 【　https://supabase.com/docs/guides/auth/debugging/error-codes　】for details  |
+| Physical Name | Logical Name       | Type   | NotNull | Remarks                                                                        |
+| ------------- | ------------------ | ------ | ------- | ------------------------------------------------------------------------------ |
+| error         | processing message | string | o       | 【　https://supabase.com/docs/guides/auth/debugging/error-codes　】for details |
 
 ---
 
@@ -73,16 +73,15 @@ import {supabase} from "@/utils/supabase/client"
 
 ```jsonc
 {
-  "error": " Forbidden"
+  "error": " Forbidden",
 }
-
 ```
 
 ### 422: Sent when an API request has been accepted but cannot be processed because the user or authentication server is unable to fulfill the request.
 
 ```jsonc
 {
-  "error": " Unprocessable Entity"
+  "error": " Unprocessable Entity",
 }
 ```
 
@@ -90,15 +89,15 @@ import {supabase} from "@/utils/supabase/client"
 
 ```jsonc
 {
-  "error": "Too Many Requests"
+  "error": "Too Many Requests",
 }
 ```
 
-### 500:  Server error
+### 500: Server error
 
 ```jsonc
 {
-  "error": "Internal Server Error"
+  "error": "Internal Server Error",
 }
 ```
 
@@ -106,6 +105,6 @@ import {supabase} from "@/utils/supabase/client"
 
 ```jsonc
 {
-  "error": "Not Implemented"
+  "error": "Not Implemented",
 }
 ```
