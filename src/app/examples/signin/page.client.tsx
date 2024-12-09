@@ -60,7 +60,7 @@ export default function PageClient() {
           </Button>
           <p className="mt-2 text-sm text-muted-foreground">
             {`Don't have an account yet?`}{' '}
-            <a href="/signup" className="text-black underline">
+            <a href="/examples/signup" className="text-black underline">
               Sign up
             </a>
           </p>
