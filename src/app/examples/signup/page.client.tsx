@@ -14,12 +14,8 @@ import { Label } from '@/components/ui/label'
 import { useState } from 'react'
 
 export default function PageClient() {
-  /* メールアドレス */
   const [email, setEmail] = useState('')
-  /* パスワード */
   const [password, setPassword] = useState('')
-
-  /* 新規登録処理 */
   const handleSignUp = async () => {}
 
   return (
