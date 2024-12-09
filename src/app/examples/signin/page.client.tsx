@@ -4,7 +4,6 @@ import { Button } from '@/components/ui/button'
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
@@ -19,17 +18,14 @@ export default function PageClient() {
   /* パスワード */
   const [password, setPassword] = useState('')
 
-  /* 新規登録処理 */
-  const handleSignUp = async () => {}
+  /* ログイン処理 */
+  const handleSignIn = async () => {}
 
   return (
     <main className="mx-auto mt-12 flex max-w-screen-md justify-center">
       <Card className="w-[350px]">
         <CardHeader>
-          <CardTitle>Create an account</CardTitle>
-          <CardDescription>
-            Enter your email below to create your account
-          </CardDescription>
+          <CardTitle className="text-center">Log in to App</CardTitle>
         </CardHeader>
         <CardContent>
           <form>
@@ -51,21 +47,21 @@ export default function PageClient() {
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Password"
+                  placeholder=""
                 />
               </div>
             </div>
           </form>
         </CardContent>
         <CardFooter className="flex flex-col">
-          <Button onClick={handleSignUp} className="w-full">
+          <Button onClick={handleSignIn} className="w-full">
             {' '}
-            Sign up with Email
+            Log in with Email
           </Button>
           <p className="mt-2 text-sm text-muted-foreground">
-            Already have an account ?{' '}
-            <a href="/signin" className="text-black underline">
-              Sign in
+            {`Don't have an account yet?`}{' '}
+            <a href="/signup" className="text-black underline">
+              Sign up
             </a>
           </p>
         </CardFooter>

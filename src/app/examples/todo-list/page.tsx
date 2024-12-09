@@ -7,10 +7,10 @@ export function generateMetadata(): Metadata {
   }
 }
 
-export default function Post({ params }: { params: { slug: string } }) {
+export default function TodoList() {
   return (
     <div>
-      <PageClient params={params} />
+      <PageClient />
     </div>
   )
 }
