@@ -5,7 +5,7 @@
 ```
 import {supabase} from "@/utils/supabase/client"
 
-　 supabase.from.update()
+　 supabase.from.create()
 ```
 
 ## Functionality overview
@@ -16,7 +16,6 @@ import {supabase} from "@/utils/supabase/client"
 
 ### 1. Add the information of the contents.
 
-- The contents table exists in the Supabase table.
 - The parameter value of the request is registered in the contents table.
 - If the following conditions are met, the registration succeeds.
 
@@ -30,25 +29,11 @@ import {supabase} from "@/utils/supabase/client"
 
 ### Parameter
 
-| Column Name  | Item Name             | Type   | Required | Remarks |
-| ------------ | --------------------- | ------ | -------- | ------- |
-| id           | accountIdアカウントID | string | o        |         |
-| email        | メール                | string | o        |         |
-| first_name   | 名前                  | string | o        |         |
-| last_name    | 名字                  | string | o        |         |
-| country_name | 国名                  | string | o        |         |
-| zip          | 郵便番号              | string | o        |         |
-| address1     | 住所1                 | string | o        |         |
-| address2     | 住所2                 | string | o        |         |
-| address3     | 住所3                 | string | o        |         |
-| address4     | 住所4                 | string | o        |         |
-| address5     | 住所5                 | string | o        |         |
-| tel          | 電話番号              | string | o        |         |
-| gender       | 性別                  | string | o        |         |
-| birthday     | 生年月日              | string | o        |         |
-| nick_name    | ニックネーム          | string | o        |         |
-| image        | プロフィール写真      | string | o        |         |
-| self_comment | 自己紹介              | string | o        |         |
+| Column Name  | Item Name | Type   | Required | Remarks |
+|--------------|-----------| ------ | -------- | ------- |
+| id           | 掲示板ID     | string | o        |         |
+| plan_title   | 計画タイトル    | string | o        |         |
+| plan_board   | 計画内容      | string | o        |         |
 
 ---
 

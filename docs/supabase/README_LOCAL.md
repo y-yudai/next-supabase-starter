@@ -4,6 +4,7 @@
 ```bash
 npm install supabase --save-dev
 ```
+### Those who currently use this brunch ignore 2,3,4,5,6 and start with 7
 
 2. Initial settings for working with Supabase
 ```bash
@@ -51,6 +52,8 @@ S3 Region: local
 ```
 
 ## Local Migrations
+
+### Those who currently use this brunch ignore 1,2 and start with 3
 
 1. Run the npx command to create a table .sql file
 ```bash
