@@ -29,11 +29,11 @@ import {supabase} from "@/utils/supabase/client"
 
 ### Parameter
 
-| Column Name  | Item Name | Type   | Required | Remarks |
-|--------------|-----------| ------ | -------- | ------- |
-| id           | 掲示板ID     | string | o        |         |
-| plan_title   | 計画タイトル    | string | o        |         |
-| plan_board   | 計画内容      | string | o        |         |
+| Column Name | Item Name | Type   | Required | Remarks |
+|-----------|-----------| ------ | -------- | ------- |
+| id        | ID     | string | o        |         |
+| title     | タイトル    | string | o        |         |
+| finished | 完了状態      | string | o        |         |
 
 ---
 
