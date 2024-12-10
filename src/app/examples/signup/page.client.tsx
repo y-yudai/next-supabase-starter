@@ -1,4 +1,9 @@
-'use client'
+"use client"
+
+import { useState } from "react"
+import { useRouter } from 'next/navigation'
+import useAuthStore from '@/store/auth'
+import useUserStore from '@/store/user-account'
 
 import { Button } from '@/components/ui/button'
 import {
@@ -11,12 +16,25 @@ import {
 } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { useState } from 'react'
 
 export default function PageClient() {
+  const { register } = useAuthStore()
+  const { createUser } = useUserStore()
+  const router = useRouter()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const handleSignUp = async () => {}
+  const handleSignUp = async () => {
+    try {
+      /* 認証処理 */
+      const session = await register(email, password)
+      /* ユーザーアカウント作成処理 */
+      await createUser(email, password)
+    } catch (error) {
+      console.error(error)
+    } finally {
+      router.push('/signin')
+    }
+  }
 
   return (
     <main className="mx-auto mt-12 flex max-w-screen-md justify-center">
