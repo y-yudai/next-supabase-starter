@@ -11,7 +11,7 @@ npm install supabase --save-dev
 npx supabase init
 ```
 3. Initial settings are all marked with 【N】
-```bash
+```
 Generate VS Code settings for Deno? [y/N] n
 Generate IntelliJ Settings for Deno? [y/N] n
 Finished supabase init.
@@ -24,7 +24,7 @@ Finished supabase init.
 - https://www.docker.com/ja-jp/get-started/
 
 6. In config.toml, there's the [analytics] part Modifying [enabled] to [false]
-```bash
+```
 [analytics]
 enabled = false
 ```
@@ -35,7 +35,7 @@ npx supabase start
 ```
 
 8. Log check
-```bash
+```
 Started supabase local development setup.
 API URL: xxxxx
 GraphQL URL: xxxxx
@@ -60,7 +60,7 @@ S3 Region: local
 npx supabase migration new create_user_account_table  
 ```
 2. Create a table query to create
-```bash
+```
 Example）
 CREATE TABLE user_accounts (
 id SERIAL PRIMARY KEY,   -- Auto-incrementing column for AccountId
