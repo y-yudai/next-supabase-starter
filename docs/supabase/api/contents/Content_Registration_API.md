@@ -31,9 +31,9 @@ import {supabase} from "@/utils/supabase/client"
 
 | Column Name | Item Name | Type   | Required | Remarks |
 |-----------|-----------| ------ | -------- | ------- |
-| id        | ID     | string | o        |         |
-| title     | タイトル    | string | o        |         |
-| finished | 完了状態      | string | o        |         |
+| id        | ID        | string | o        |         |
+| title     | title     | string | o        |         |
+| finished | finished  | string | o        |         |
 
 ---
 
