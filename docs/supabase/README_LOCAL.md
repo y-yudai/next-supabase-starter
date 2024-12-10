@@ -61,6 +61,7 @@ npx supabase migration new create_user_account_table
 ```
 2. Create a table query to create
 ```bash
+Example）
 CREATE TABLE user_accounts (
 id SERIAL PRIMARY KEY,   -- Auto-incrementing column for AccountId
 email VARCHAR(255) NOT NULL,  -- Mail
