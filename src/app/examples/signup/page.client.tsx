@@ -26,13 +26,13 @@ export default function PageClient() {
   const handleSignUp = async () => {
     try {
       /* 認証処理 */
-      const session = await register(email, password)
+      await register(email, password)
       /* ユーザーアカウント作成処理 */
       await createUser(email, password)
     } catch (error) {
       console.error(error)
     } finally {
-      router.push('/signin')
+      router.push('/examples/signin')
     }
   }
 

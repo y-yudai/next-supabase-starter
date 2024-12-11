@@ -19,12 +19,11 @@ const useUserStore = create(
     (set) => ({
       userAccount: null,
       setUser: (userAccount) => set({ userAccount }),
-      createUser: async (email, password) => {
+      createUser: async (email) => {
         if (!email) return Promise.reject('Email is required')
-        if (!password) return Promise.reject('Password is required')
         const { error } = await supabase
-          .from('user_account')
-          .insert([{ email: email, password: password }])
+          .from('user_accounts')
+          .insert([{ email: email }])
         if (error) return Promise.reject(error)
       },
       fetchUserAccountByEmail: async (email) => {
