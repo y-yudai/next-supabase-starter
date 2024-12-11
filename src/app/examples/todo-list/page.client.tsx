@@ -1,37 +1,104 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import useTodoListStore from '@/store/todo-list'
 import { Plus, Check, Trash2 } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
+import { createClient } from '@supabase/supabase-js'
 
 interface Todo {
   id: number
-  text: string
-  completed: boolean
+  title: string
+  finished: boolean
 }
+
+const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!)
 
 export default function PageClient() {
   const [todos, setTodos] = useState<Todo[]>([])
   const [newTodo, setNewTodo] = useState("")
 
-  const addTodo = () => {
-    if (newTodo.trim() !== "") {
-      setTodos([...todos, { id: Date.now(), text: newTodo, completed: false }])
-      setNewTodo("")
+  useEffect(() => {
+    fetchTodos()
+  }, [])
+
+  const fetchTodos = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('todo_lists')
+        .select('*')
+
+      if (error) {
+        console.error('Error fetching todos:', error)
+      } else {
+        setTodos(data || [])
+      }
+    } catch (error) {
+      console.error('Error fetching todos:', error)
     }
   }
 
-  const toggleTodo = (id: number) => {
-    setTodos(todos.map(todo =>
-      todo.id === id ? { ...todo, completed: !todo.completed } : todo
-    ))
+  const addTodo = async () => {
+    if (newTodo.trim() !== "") {
+      const newTodoItem = { id: Date.now(), title: newTodo, finished: false }
+      setTodos([...todos, newTodoItem])
+      setNewTodo("")
+
+      // Add the new todo to Supabase
+      try {
+        const { data, error } = await supabase
+          .from('todo_lists')
+          .insert([{ title: newTodo, finished: false }])
+        
+        if (error) {
+          console.error('Error inserting todo:', error)
+        } else {
+          console.log('Todo added to Supabase:', data)
+        }
+      } catch (error) {
+        console.error('Error inserting todo:', error)
+      }
+    }
   }
 
-  const deleteTodo = (id: number) => {
+  const toggleTodo = async (id: number) => {
+    const updatedTodos = todos.map(todo =>
+      todo.id === id ? { ...todo, finished: !todo.finished } : todo
+    )
+    setTodos(updatedTodos)
+
+    try {
+      const { error } = await supabase
+        .from('todo_lists')
+        .update({ finished: !todos.find(t => t.id === id)?.finished })
+        .eq('id', id)
+
+      if (error) {
+        console.error('Error updating todo:', error)
+      }
+    } catch (error) {
+      console.error('Error updating todo:', error)
+    }
+  }
+
+  const deleteTodo = async (id: number) => {
     setTodos(todos.filter(todo => todo.id !== id))
+
+    try {
+      const { error } = await supabase
+        .from('todo_lists')
+        .delete()
+        .eq('id', id)
+
+      if (error) {
+        console.error('Error deleting todo:', error)
+      }
+    } catch (error) {
+      console.error('Error deleting todo:', error)
+    }
   }
 
   return (
@@ -62,20 +129,20 @@ export default function PageClient() {
                 variant="outline"
                 className={cn(
                   "rounded-full transition-colors",
-                  todo.completed && "bg-green-500 text-white hover:bg-green-600"
+                  todo.finished && "bg-green-500 text-white hover:bg-green-600"
                 )}
                 onClick={() => toggleTodo(todo.id)}
               >
-                <Check className={cn("h-4 w-4", todo.completed ? "opacity-100" : "opacity-0")} />
+                <Check className={cn("h-4 w-4", todo.finished ? "opacity-100" : "opacity-0")} />
                 <span className="sr-only">
-                  {todo.completed ? "Mark as incomplete" : "Mark as complete"}
+                  {todo.finished ? "Mark as incomplete" : "Mark as complete"}
                 </span>
               </Button>
               <span className={cn(
                 "flex-grow",
-                todo.completed && "line-through text-gray-500"
+                todo.finished && "line-through text-gray-500"
               )}>
-                {todo.text}
+                {todo.title}
               </span>
               <Button
                 size="icon"

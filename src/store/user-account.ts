@@ -38,7 +38,7 @@ const useUserStore = create(
         set({ userAccount: null })
       },
       updateUserAccountById: async (id) => {
-        // TODO: user_accountテーブルの更新処理
+        // TODO: user_accountsテーブルの更新処理
       },
       uploadUserImageById: async (id) => {
         // TODO: 画像アップロード処理
