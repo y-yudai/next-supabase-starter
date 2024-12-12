@@ -100,61 +100,64 @@ export default function PageClient() {
   }
 
   return (
-    <Card className="w-full max-w-md mx-auto">
-      <CardHeader>
-        <CardTitle className="text-2xl font-bold text-center">My Todo List</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <div className="flex space-x-2 mb-4">
-          <Input
-            type="text"
-            placeholder="Add a new task..."
-            value={newTodo}
-            onChange={(e) => setNewTodo(e.target.value)}
-            onKeyPress={(e) => e.key === "Enter" && addTodo()}
-            className="flex-grow"
-          />
-          <Button onClick={addTodo} size="icon">
-            <Plus className="h-4 w-4" />
-            <span className="sr-only">Add todo</span>
-          </Button>
-        </div>
-        <ul className="space-y-2">
-          {todos.map((todo) => (
-            <li key={todo.id} className="flex items-center space-x-2">
-              <Button
-                size="icon"
-                variant="outline"
-                className={cn(
-                  "rounded-full transition-colors",
-                  todo.finished && "bg-green-500 text-white hover:bg-green-600"
-                )}
-                onClick={() => toggleTodo(todo.id)}
-              >
-                <Check className={cn("h-4 w-4", todo.finished ? "opacity-100" : "opacity-0")} />
-                <span className="sr-only">
-                  {todo.finished ? "Mark as incomplete" : "Mark as complete"}
+    <main className="mx-auto mt-12 flex max-w-screen-md justify-center">
+      <Card className="w-full max-w-md mx-auto">
+        <CardHeader>
+          <CardTitle className="text-2xl font-bold text-center">Todo List</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="flex space-x-2 mb-4">
+            <Input
+              type="text"
+              placeholder="Add a new task..."
+              value={newTodo}
+              onChange={(e) => setNewTodo(e.target.value)}
+              onKeyPress={(e) => e.key === "Enter" && addTodo()}
+              className="flex-grow"
+            />
+            <Button onClick={addTodo} size="icon">
+              <Plus className="h-4 w-4" />
+              <span className="sr-only">Add todo</span>
+            </Button>
+          </div>
+          <ul className="space-y-2">
+            {todos.map((todo) => (
+              <li key={todo.id} className="flex items-center space-x-2">
+                <Button
+                  size="icon"
+                  variant="outline"
+                  className={cn(
+                    "rounded-full transition-colors",
+                    todo.finished && "bg-green-500 text-white hover:bg-green-600"
+                  )}
+                  onClick={() => toggleTodo(todo.id)}
+                >
+                  <Check className={cn("h-4 w-4", todo.finished ? "opacity-100" : "opacity-0")} />
+                  <span className="sr-only">
+                    {todo.finished ? "Mark as incomplete" : "Mark as complete"}
+                  </span>
+                </Button>
+                <span className={cn(
+                  "flex-grow",
+                  todo.finished && "line-through text-gray-500"
+                )}>
+                  {todo.title}
                 </span>
-              </Button>
-              <span className={cn(
-                "flex-grow",
-                todo.finished && "line-through text-gray-500"
-              )}>
-                {todo.title}
-              </span>
-              <Button
-                size="icon"
-                variant="ghost"
-                onClick={() => deleteTodo(todo.id)}
-              >
-                <Trash2 className="h-4 w-4" />
-                <span className="sr-only">Delete todo</span>
-              </Button>
-            </li>
-          ))}
-        </ul>
-      </CardContent>
-    </Card>
+                <Button
+                  size="icon"
+                  variant="ghost"
+                  onClick={() => deleteTodo(todo.id)}
+                >
+                  <Trash2 className="h-4 w-4" />
+                  <span className="sr-only">Delete todo</span>
+                </Button>
+              </li>
+            ))}
+          </ul>
+        </CardContent>
+      </Card>
+    </main>
+
   )
 }
 
