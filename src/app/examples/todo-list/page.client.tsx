@@ -1,7 +1,6 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import useTodoListStore from '@/store/todo-list'
 import { Plus, Check, Trash2 } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -43,10 +42,7 @@ export default function PageClient() {
 
   const addTodo = async () => {
     if (newTodo.trim() !== "") {
-      const newTodoItem = { id: Date.now(), title: newTodo, finished: false }
-      setTodos([...todos, newTodoItem])
       setNewTodo("")
-
       // Add the new todo to Supabase
       try {
         const { data, error } = await supabase
@@ -57,6 +53,8 @@ export default function PageClient() {
           console.error('Error inserting todo:', error)
         } else {
           console.log('Todo added to Supabase:', data)
+          // Fetch the updated todos to get the server-generated ID
+          fetchTodos()
         }
       } catch (error) {
         console.error('Error inserting todo:', error)
