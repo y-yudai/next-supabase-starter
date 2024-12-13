@@ -9,6 +9,6 @@ CREATE TABLE user_accounts (
   address1 VARCHAR(255) NOT NULL,  -- Address
   tel VARCHAR(20) NOT NULL,  -- TelNumber
   gender VARCHAR(10) NOT NULL,  -- Gender
-  birthday DATE NOT NULL  -- Birthday
+  birthday DATE NOT NULL,  -- Birthday
   CONSTRAINT fk_auth_id FOREIGN KEY (auth_id) REFERENCES auth.users (id) ON DELETE CASCADE
 );
