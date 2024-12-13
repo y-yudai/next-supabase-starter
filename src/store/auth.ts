@@ -9,7 +9,7 @@ interface AuthState {
   setSession: (session: Session | null) => void
   setUser: (user: User | null) => void
   login: (email: string, password: string) => Promise<void>
-  register: (email: string, password: string) => Promise<void>
+  register: (email: string, password: string) => Promise<any>
   logout: () => Promise<void>
   updatePassword: (newPassword: string) => Promise<AuthError | null | undefined>
 }
@@ -43,7 +43,7 @@ const useAuthStore = create(
           email,
           password,
         })
-        if (error) return Promise.reject(error)
+        return { data, error }
       },
       logout: async () => {
         const { error } = await supabase.auth.signOut()

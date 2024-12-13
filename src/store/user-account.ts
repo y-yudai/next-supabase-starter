@@ -5,7 +5,7 @@ import { persist } from 'zustand/middleware'
 interface UserState {
   userAccount: any | null
   setUser: (user: { email: string } | null) => void
-  createUser: (email: string, password: string) => Promise<void>
+  createUser: (email: string, uuid: string) => Promise<void>
   fetchUserAccountByEmail: (email: string) => Promise<void>
   resetUserAccount: () => Promise<void>
   updateUserAccountById: (id: number) => Promise<void>
@@ -19,11 +19,11 @@ const useUserStore = create(
     (set) => ({
       userAccount: null,
       setUser: (userAccount) => set({ userAccount }),
-      createUser: async (email) => {
+      createUser: async (email, uuid) => {
         if (!email) return Promise.reject('Email is required')
         const { error } = await supabase
           .from('user_accounts')
-          .insert([{ email: email }])
+          .insert([{ email: email, auth_id: uuid }])
         if (error) return Promise.reject(error)
       },
       fetchUserAccountByEmail: async (email) => {

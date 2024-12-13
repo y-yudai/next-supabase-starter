@@ -25,10 +25,8 @@ export default function PageClient() {
   const [password, setPassword] = useState('')
   const handleSignUp = async () => {
     try {
-      /* 認証処理 */
-      await register(email, password)
-      /* ユーザーアカウント作成処理 */
-      await createUser(email, password)
+      const { data } = await register(email, password)
+      await createUser(email, data.user.id)
     } catch (error) {
       console.error(error)
     } finally {
