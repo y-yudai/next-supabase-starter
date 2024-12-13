@@ -24,7 +24,7 @@ import {supabase} from "@/utils/supabase/client"
 
 ---
 
-## リクエスト
+## Request
 
 ### Parameter
 
