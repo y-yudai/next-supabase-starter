@@ -11,15 +11,26 @@ import {
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import useAuthStore from '@/store/auth'
+import useUserStore from '@/store/user-account'
 
 export default function PageClient() {
-  /* メールアドレス */
-  const [email, setEmail] = useState('')
-  /* パスワード */
-  const [password, setPassword] = useState('')
+  const router = useRouter()
+  const { login } = useAuthStore()
+  const { fetchUserAccountByEmail } = useUserStore()
 
-  /* ログイン処理 */
-  const handleSignIn = async () => {}
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const handleSignIn = async () => {
+    try {
+      const { data, error } = await login(email, password)
+      await fetchUserAccountByEmail(data.user.id)
+      router.push('/examples/todo-list')
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
   return (
     <main className="mx-auto mt-12 flex max-w-screen-md justify-center">

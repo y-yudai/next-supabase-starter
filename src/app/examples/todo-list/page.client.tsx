@@ -1,12 +1,13 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, use } from "react"
 import { Plus, Check, Trash2 } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
 import { createClient } from '@supabase/supabase-js'
+import useUserStore from '@/store/user-account'
 
 interface Todo {
   id: number
@@ -17,6 +18,7 @@ interface Todo {
 const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!)
 
 export default function PageClient() {
+  const { userAccount } = useUserStore()
   const [todos, setTodos] = useState<Todo[]>([])
   const [newTodo, setNewTodo] = useState("")
 
@@ -29,6 +31,7 @@ export default function PageClient() {
       const { data, error } = await supabase
         .from('todo_lists')
         .select('*')
+        .eq('user_id', userAccount.id)
 
       if (error) {
         console.error('Error fetching todos:', error)
@@ -43,11 +46,10 @@ export default function PageClient() {
   const addTodo = async () => {
     if (newTodo.trim() !== "") {
       setNewTodo("")
-      // Add the new todo to Supabase
       try {
         const { data, error } = await supabase
           .from('todo_lists')
-          .insert([{ title: newTodo, finished: false }])
+          .insert([{ user_id: userAccount.id, title: newTodo, finished: false }])
         
         if (error) {
           console.error('Error inserting todo:', error)

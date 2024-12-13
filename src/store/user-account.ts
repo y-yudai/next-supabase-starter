@@ -6,7 +6,7 @@ interface UserState {
   userAccount: any | null
   setUser: (user: { email: string } | null) => void
   createUser: (email: string, uuid: string) => Promise<void>
-  fetchUserAccountByEmail: (email: string) => Promise<void>
+  fetchUserAccountByEmail: (uuid: string) => Promise<void>
   resetUserAccount: () => Promise<void>
   updateUserAccountById: (id: number) => Promise<void>
   uploadUserImageById: (id: number) => Promise<void>
@@ -26,11 +26,11 @@ const useUserStore = create(
           .insert([{ email: email, auth_id: uuid }])
         if (error) return Promise.reject(error)
       },
-      fetchUserAccountByEmail: async (email) => {
+      fetchUserAccountByEmail: async (uuid) => {
         const { data, error } = await supabase
-          .from('user_account')
+          .from('user_accounts')
           .select()
-          .eq('email', email)
+          .eq('auth_id', uuid)
           .single()
         set({ userAccount: data })
       },

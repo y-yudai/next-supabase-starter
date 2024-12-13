@@ -8,7 +8,7 @@ interface AuthState {
   user: User | null
   setSession: (session: Session | null) => void
   setUser: (user: User | null) => void
-  login: (email: string, password: string) => Promise<void>
+  login: (email: string, password: string) => Promise<any>
   register: (email: string, password: string) => Promise<any>
   logout: () => Promise<void>
   updatePassword: (newPassword: string) => Promise<AuthError | null | undefined>
@@ -31,9 +31,8 @@ const useAuthStore = create(
           email,
           password,
         })
-        if (error) return Promise.reject(error)
-
         set({ session: data.session, user: data.user })
+        return { data, error }
       },
       register: async (email, password) => {
         if (!email) return Promise.reject('Email is required')
