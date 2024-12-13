@@ -31,15 +31,15 @@ import {supabase} from "@/utils/supabase/client"
 | Column Name  | Item Name   | Type   | Required | Remarks |
 | ------------ | ----------- |--------| -------- | ------- |
 | id           | AccountId   | number | o        |         |
-| email        | Mail        | string | o        |         |
-| first_name   | FirstName   | string | o        |         |
-| last_name    | Last_name   | string | o        |         |
-| country_name | CountryName | string | o        |         |
-| zip          | ZipCode     | string | o        |         |
-| address1     | Address     | string | o        |         |
-| tel          | TelNumber   | string | o        |         |
-| gender       | Gender      | string | o        |         |
-| birthday     | Birthday    | string | o        |         |
+| email        | Mail        | string |         |         |
+| first_name   | FirstName   | string |         |         |
+| last_name    | Last_name   | string |         |         |
+| country_name | CountryName | string |         |         |
+| zip          | ZipCode     | string |         |         |
+| address1     | Address     | string |         |         |
+| tel          | TelNumber   | string |         |         |
+| gender       | Gender      | string |         |         |
+| birthday     | Birthday    | string |         |         |
 
 ---
 
