@@ -30,10 +30,11 @@ import {supabase} from "@/utils/supabase/client"
 ### Parameter
 
 | Column Name | Item Name | Type   | Required | Remarks |
-|-----------|-----------| ------ | -------- | ------- |
-| id        | ID        | string | o        |         |
-| title     | title     | string | o        |         |
-| finished | finished  | string | o        |         |
+|-------------|-----------|--------| -------- | ------- |
+| id          | ID        | number | o        |         |
+| user_id     | UserID    | number | o        |         |
+| title       | title     | string | o        |         |
+| finished    | finished  | string | o        |         |
 
 ---
 
