@@ -29,8 +29,8 @@ import {supabase} from "@/utils/supabase/client"
 ### Parameter
 
 | Column Name  | Item Name   | Type   | Required | Remarks |
-| ------------ | ----------- | ------ | -------- | ------- |
-| id           | AccountId   | string | o        |         |
+| ------------ | ----------- |--------| -------- | ------- |
+| id           | AccountId   | number | o        |         |
 | email        | Mail        | string | o        |         |
 | first_name   | FirstName   | string | o        |         |
 | last_name    | Last_name   | string | o        |         |
