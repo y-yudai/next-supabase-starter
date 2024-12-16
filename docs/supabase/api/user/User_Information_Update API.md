@@ -1,6 +1,6 @@
-# ユーザー情報更新API
+# user Infomation Update API
 
-## 使い方
+## Usage.
 
 ```
 import {supabase} from "@/utils/supabase/client"
@@ -31,7 +31,7 @@ import {supabase} from "@/utils/supabase/client"
 | Column Name  | Item Name   | Type   | Required | Remarks |
 | ------------ | ----------- |--------| -------- | ------- |
 | id           | AccountId   | number | o        |         |
-| email        | Mail        | string |         |         |
+| email        | Mail        | string | o        |         |
 | first_name   | FirstName   | string |         |         |
 | last_name    | Last_name   | string |         |         |
 | country_name | CountryName | string |         |         |
