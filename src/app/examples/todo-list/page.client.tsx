@@ -21,10 +21,13 @@ export default function PageClient() {
   const { userAccount } = useUserStore()
   const [todos, setTodos] = useState<Todo[]>([])
   const [newTodo, setNewTodo] = useState("")
+  const [isLoading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetchTodos()
-  }, [])
+    if (userAccount?.id) {
+      fetchTodos()
+    }
+  }, [userAccount?.id])
 
   const fetchTodos = async () => {
     try {
@@ -32,7 +35,7 @@ export default function PageClient() {
         .from('todo_lists')
         .select('*')
         .eq('user_id', userAccount.id)
-
+      setLoading(false)
       if (error) {
         console.error('Error fetching todos:', error)
       } else {
@@ -100,6 +103,8 @@ export default function PageClient() {
       console.error('Error deleting todo:', error)
     }
   }
+
+  if (isLoading) return <p>Loading...</p>
 
   return (
     <main className="mx-auto mt-12 flex max-w-screen-md justify-center">
