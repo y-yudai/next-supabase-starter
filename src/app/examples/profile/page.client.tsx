@@ -5,6 +5,7 @@ import Image from 'next/image'
 import useUserStore from '@/store/user-account'
 
 export default function PageClient() {
+  const { userAccount } = useUserStore()
 
   return (
     <div className="min-h-screen bg-gray-100 px-4 py-12 sm:px-6 lg:px-8">
@@ -20,17 +21,12 @@ export default function PageClient() {
               />
             </div>
             <h1 className="text-center text-2xl font-bold text-gray-900">
-              name
+              {userAccount?.first_name ?? "未入力"}
             </h1>
           </CardHeader>
           <CardContent className="space-y-4">
-            <ProfileInfoItem label="Email" value="xxx" />
-            <ProfileInfoItem label="Location" value="xxx" />
-            <ProfileInfoItem label="Joined" value="xxx" />
-            <div>
-              <h2 className="mb-2 text-lg font-semibold">Bio</h2>
-              <p className="text-gray-600">XXX</p>
-            </div>
+            <ProfileInfoItem label="Email" value={userAccount?.email} />
+            <ProfileInfoItem label="Country" value={userAccount?.country_name} />
           </CardContent>
         </Card>
       </div>
