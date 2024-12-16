@@ -2,8 +2,10 @@
 
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import Image from 'next/image'
+import useUserStore from '@/store/user-account'
 
 export default function PageClient() {
+
   return (
     <div className="min-h-screen bg-gray-100 px-4 py-12 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-2xl">

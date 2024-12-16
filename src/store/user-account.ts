@@ -4,9 +4,9 @@ import { persist } from 'zustand/middleware'
 
 interface UserState {
   userAccount: any | null
-  setUser: (user: { email: string } | null) => void
+  setUser: (user: any) => void
   createUser: (email: string, uuid: string) => Promise<void>
-  fetchUserAccountByEmail: (uuid: string) => Promise<void>
+  fetchUserAccountById: (uuid: string) => Promise<void>
   resetUserAccount: () => Promise<void>
   updateUserAccountById: (id: number) => Promise<void>
   uploadUserImageById: (id: number) => Promise<void>
@@ -26,7 +26,7 @@ const useUserStore = create(
           .insert([{ email: email, auth_id: uuid }])
         if (error) return Promise.reject(error)
       },
-      fetchUserAccountByEmail: async (uuid) => {
+      fetchUserAccountById: async (uuid) => {
         const { data, error } = await supabase
           .from('user_accounts')
           .select()

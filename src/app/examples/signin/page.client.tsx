@@ -18,14 +18,14 @@ import useUserStore from '@/store/user-account'
 export default function PageClient() {
   const router = useRouter()
   const { login } = useAuthStore()
-  const { fetchUserAccountByEmail } = useUserStore()
+  const { fetchUserAccountById } = useUserStore()
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const handleSignIn = async () => {
     try {
       const { data, error } = await login(email, password)
-      await fetchUserAccountByEmail(data.user.id)
+      await fetchUserAccountById(data.user.id)
       router.push('/examples/todo-list')
     } catch (error) {
       console.error(error)
