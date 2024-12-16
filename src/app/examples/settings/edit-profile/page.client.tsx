@@ -1,44 +1,45 @@
-'use client'
-import {
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
+import { Button } from "@/components/ui/button"
+import { Card } from "@/components/ui/card"
 
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-
-export default function PageClient() {
+export default function SettingsPage() {
   return (
-    <main className="mx-auto mt-12 flex max-w-screen-md justify-center">
-      <div className="w-[350px]">
-        <CardHeader>
-          <CardTitle>Settings</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <form>
-            <div className="grid w-full items-center gap-4">
-              <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="name">Name</Label>
-                <Input id="name" placeholder="" />
-              </div>
-              <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="username">Username</Label>
-                <Input id="username" placeholder="" />
-              </div>
-              <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="email">Email</Label>
-                <Input id="email" placeholder="m@example.com" />
-              </div>
-            </div>
-          </form>
-        </CardContent>
-        <CardFooter className="flex flex-col">
-          <Button className="w-full"> Save</Button>
-        </CardFooter>
+    <div className="container mx-auto p-6">
+      <div className="space-y-1">
+        <h1 className="text-2xl font-semibold tracking-tight">Settings</h1>
+        <p className="text-sm text-muted-foreground">
+          Manage your account settings and set e-mail preferences.
+        </p>
       </div>
-    </main>
+      
+      <div className="flex flex-col md:flex-row gap-6 mt-8">
+        {/* Sidebar Navigation */}
+        <nav className="w-full md:w-64 space-y-1">
+          <a href="#profile" className="block px-3 py-2 rounded-md text-sm bg-muted">
+            Profile
+          </a>
+          <a href="#notifications" className="block px-3 py-2 rounded-md text-sm">
+            Edit
+          </a>
+          <a href="#notifications" className="block px-3 py-2 rounded-md text-sm">
+            Change Password
+          </a>
+          <a href="#display" className="block px-3 py-2 rounded-md text-sm">
+            Logout
+          </a>
+        </nav>
+
+        {/* Main Content */}
+        <div className="flex-1 space-y-6">
+          <div className="space-y-1">
+            <h2 className="text-lg font-medium">Profile</h2>
+            <p className="text-sm text-muted-foreground">
+              Customize the appearance of the app. Automatically switch between day and night themes.
+            </p>
+          </div>
+          <Button className="mt-6">Update preferences</Button>
+        </div>
+      </div>
+    </div>
   )
 }
+
