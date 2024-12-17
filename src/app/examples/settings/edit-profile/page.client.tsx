@@ -1,29 +1,45 @@
+"use client";
+
 import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
+import { useRouter } from 'next/navigation'
+import useAuthStore from '@/store/auth'
+import useUserStore from '@/store/user-account'
 
 export default function SettingsPage() {
+  const router = useRouter()
+  const { logout } = useAuthStore()
+  const { resetUserAccount } = useUserStore()
+
+  const handleSignOut = async () => {
+    try {
+      await logout()
+      await resetUserAccount()
+    } catch (error) {
+      console.error(error)
+    } finally {
+      router.push('/examples/signin')
+    }
+  }
+
   return (
     <div className="container mx-auto p-6">
       <div className="space-y-1">
         <h1 className="text-2xl font-semibold tracking-tight">Settings</h1>
         <p className="text-sm text-muted-foreground">
-          Manage your account settings and set e-mail preferences.
+          Manage your account settings
         </p>
       </div>
       
       <div className="flex flex-col md:flex-row gap-6 mt-8">
         {/* Sidebar Navigation */}
         <nav className="w-full md:w-64 space-y-1">
-          <a href="#profile" className="block px-3 py-2 rounded-md text-sm bg-muted">
-            Profile
-          </a>
-          <a href="#notifications" className="block px-3 py-2 rounded-md text-sm">
+          <a href="/examples/settings/edit-profile" className="block px-3 py-2 rounded-md text-sm bg-muted">
             Edit
           </a>
-          <a href="#notifications" className="block px-3 py-2 rounded-md text-sm">
+          <a href="/examples/settings/change-password" className="block px-3 py-2 rounded-md text-sm">
             Change Password
           </a>
-          <a href="#display" className="block px-3 py-2 rounded-md text-sm">
+          <a href="#" onClick={handleSignOut} className="block px-3 py-2 rounded-md text-sm">
             Logout
           </a>
         </nav>
