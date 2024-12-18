@@ -7,7 +7,7 @@ export async function middleware(request: NextRequest) {
   const supabase = await createServerClient()
   const { data } = await supabase.auth.getSession()
   const publicPath = ['/examples/signin', '/examples/signup']
-  const privatePath = ['/examples/todo-list']
+  const privatePath = ['/examples/todo-list', '/examples/settings/edit-profile']
 
   if (!data.session && privatePath.some((path) => request.url.includes(path))) {
     return NextResponse.redirect(new URL('/examples/signin', request.url))
