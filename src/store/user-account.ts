@@ -19,9 +19,9 @@ interface UserAccount {
 interface UserState {
   userAccount: UserAccount | null
   setUser: (user: UserAccount) => void
-  createUser: (email: string, uuid: string) => Promise<void>
+  createUserAccount: (email: string, uuid: string) => Promise<void>
   fetchUserAccountById: (uuid: string) => Promise<void>
-  resetUserAccount: () => Promise<void>
+  clearUserAccount: () => Promise<void>
   updateUserAccountById: (id: number) => Promise<void>
   uploadUserImageById: (id: number) => Promise<void>
 }
@@ -33,7 +33,7 @@ const useUserStore = create(
     (set) => ({
       userAccount: null,
       setUser: (userAccount) => set({ userAccount }),
-      createUser: async (email, uuid) => {
+      createUserAccount: async (email, uuid) => {
         if (!email) return Promise.reject('Email is required')
         if (!uuid) return Promise.reject('uuid is required')
         const { error } = await supabase
@@ -49,7 +49,7 @@ const useUserStore = create(
           .single()
         set({ userAccount: data })
       },
-      resetUserAccount: async () => {
+      clearUserAccount: async () => {
         set({ userAccount: null })
       },
       updateUserAccountById: async (id) => {

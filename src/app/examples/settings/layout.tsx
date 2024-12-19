@@ -15,12 +15,12 @@ export default function Layout({ children }: LayoutProps) {
   const router = useRouter()
   const pathname = usePathname()
   const { logout } = useAuthStore()
-  const { resetUserAccount } = useUserStore()
+  const { clearUserAccount } = useUserStore()
 
   const handleSignOut = async () => {
     try {
       await logout()
-      await resetUserAccount()
+      await clearUserAccount()
     } catch (error) {
       console.error(error)
     } finally {

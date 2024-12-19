@@ -19,14 +19,14 @@ import { Label } from '@/components/ui/label'
 
 export default function PageClient() {
   const { register } = useAuthStore()
-  const { createUser } = useUserStore()
+  const { createUserAccount } = useUserStore()
   const router = useRouter()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const handleSignUp = async () => {
     try {
       const { data } = await register(email, password)
-      await createUser(email, data.user.id)
+      await createUserAccount(email, data.user.id)
     } catch (error) {
       console.error(error)
     } finally {
