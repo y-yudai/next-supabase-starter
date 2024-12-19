@@ -6,6 +6,16 @@ import useAuthStore from '@/store/auth'
 import useUserStore from '@/store/user-account'
 import Link from 'next/link'
 import { ReactNode } from 'react';
+import { useState } from 'react';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 
 interface LayoutProps {
   children: ReactNode;
@@ -17,14 +27,17 @@ export default function Layout({ children }: LayoutProps) {
   const { logout } = useAuthStore()
   const { clearUserAccount } = useUserStore()
 
+  const [isOpen, setIsOpen] = useState(false);
+
   const handleSignOut = async () => {
+    setIsOpen(false);
     try {
-      await logout()
-      await clearUserAccount()
+      await logout();
+      await clearUserAccount();
     } catch (error) {
-      console.error(error)
+      console.error(error);
     } finally {
-      router.push('/examples/signin')
+      router.push('/examples/signin');
     }
   }
 
@@ -56,12 +69,27 @@ export default function Layout({ children }: LayoutProps) {
               {link.label}
             </Link>
           ))}
-          <button 
-            onClick={handleSignOut} 
-            className="block w-full text-left px-3 py-2 rounded-md text-sm hover:bg-muted/50"
-          >
-            Logout
-          </button>
+          <Dialog open={isOpen} onOpenChange={setIsOpen}>
+            <DialogTrigger asChild>
+              <button 
+                className="block w-full text-left px-3 py-2 rounded-md text-sm hover:bg-muted/50"
+              >
+                Logout
+              </button>
+            </DialogTrigger>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Are you sure you want to log out?</DialogTitle>
+                <DialogDescription>
+                  This action will sign you out of your account.
+                </DialogDescription>
+              </DialogHeader>
+              <DialogFooter>
+                <Button variant="outline" onClick={() => setIsOpen(false)}>Cancel</Button>
+                <Button onClick={handleSignOut}>Log out</Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
         </nav>
 
         {/* Main Content */}
@@ -72,3 +100,4 @@ export default function Layout({ children }: LayoutProps) {
     </div>
   )
 }
+
