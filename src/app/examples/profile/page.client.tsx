@@ -7,6 +7,10 @@ import useUserStore from '@/store/user-account'
 export default function PageClient() {
   const { userAccount } = useUserStore()
 
+  if (!userAccount) {
+    return <div>User not found</div>
+  }
+
   return (
     <div className="min-h-screen bg-gray-100 px-4 py-12 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-2xl">
@@ -21,12 +25,12 @@ export default function PageClient() {
               />
             </div>
             <h1 className="text-center text-2xl font-bold text-gray-900">
-              {userAccount?.first_name ?? "未入力"}
+              {userAccount.first_name ?? "未入力"}
             </h1>
           </CardHeader>
           <CardContent className="space-y-4">
-            <ProfileInfoItem label="Email" value={userAccount?.email} />
-            <ProfileInfoItem label="Country" value={userAccount?.country_name} />
+            <ProfileInfoItem label="Email" value={userAccount.email} />
+            <ProfileInfoItem label="Country" value={userAccount.country_name} />
           </CardContent>
         </Card>
       </div>
@@ -34,7 +38,7 @@ export default function PageClient() {
   )
 }
 
-function ProfileInfoItem({ label, value }: { label: string; value: string }) {
+function ProfileInfoItem({ label, value }: { label: string; value: string | null }) {
   return (
     <div>
       <dt className="text-sm font-medium text-gray-500">{label}</dt>

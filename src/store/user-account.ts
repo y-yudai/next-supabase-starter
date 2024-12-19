@@ -2,9 +2,23 @@ import { createBrowserClient } from '@/utils/supabase/client'
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
+interface UserAccount {
+  id: number
+  auth_id: string
+  email: string | null
+  first_name: string | null
+  last_name: string | null
+  country_name: string | null
+  zip: string | null
+  address1: string | null
+  tel: string | null
+  gender: string | null
+  birthday: Date | null
+}
+
 interface UserState {
-  userAccount: any | null
-  setUser: (user: any) => void
+  userAccount: UserAccount | null
+  setUser: (user: UserAccount) => void
   createUser: (email: string, uuid: string) => Promise<void>
   fetchUserAccountById: (uuid: string) => Promise<void>
   resetUserAccount: () => Promise<void>
@@ -21,6 +35,7 @@ const useUserStore = create(
       setUser: (userAccount) => set({ userAccount }),
       createUser: async (email, uuid) => {
         if (!email) return Promise.reject('Email is required')
+        if (!uuid) return Promise.reject('uuid is required')
         const { error } = await supabase
           .from('user_accounts')
           .insert([{ email: email, auth_id: uuid }])
