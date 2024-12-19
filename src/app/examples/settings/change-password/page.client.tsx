@@ -6,12 +6,8 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 
 export default function PageClient() {
-  /* 新しいパスワード */
   const [newPassword, setNewPassword] = useState('')
-  /* 確認用パスワード */
   const [confirmPassword, setConfirmPassword] = useState('')
-
-  /* パスワード変更処理 */
   const changePassword = async () => {}
 
   return (
