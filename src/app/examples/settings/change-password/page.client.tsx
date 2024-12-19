@@ -1,14 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-
-import { Button } from '@/components/ui/button'
-import {
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
+import { Button } from "@/components/ui/button"
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 
@@ -22,12 +15,10 @@ export default function PageClient() {
   const changePassword = async () => {}
 
   return (
-    <main className="mx-auto mt-12 flex max-w-screen-md justify-center">
-      <div className="w-[350px]">
-        <CardHeader>
-          <CardTitle>Change Password</CardTitle>
-        </CardHeader>
-        <CardContent>
+    <main className="mx-auto flex max-w-screen-md justify-center">
+      <div className="w-full">
+        <h2 className='font-bold text-lg'>Change Password</h2>
+        <div className="mt-6">
           <form>
             <div className="grid w-full items-center gap-4">
               <div className="flex flex-col space-y-1.5">
@@ -50,13 +41,11 @@ export default function PageClient() {
               </div>
             </div>
           </form>
-        </CardContent>
-        <CardFooter className="flex flex-col">
-          <Button className="w-full" onClick={changePassword}>
+          <Button className="w-full mt-4" onClick={changePassword}>
             {' '}
-            Reset passowrd
+            Save
           </Button>
-        </CardFooter>
+        </div>
       </div>
     </main>
   )
