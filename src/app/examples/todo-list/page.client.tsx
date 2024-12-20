@@ -18,7 +18,7 @@ interface Todo {
 }
 
 async function fetchTodos(
-  userId: string,
+  userId: number,
   setTodos: (todos: Todo[]) => void,
   setLoading: (loading: boolean) => void
 ) {
@@ -39,7 +39,7 @@ async function fetchTodos(
 }
 
 async function addTodo(
-  userId: string,
+  userId: number,
   newTodo: string,
   setNewTodo: (value: string) => void,
   onSuccess: () => void
@@ -175,10 +175,12 @@ export default function PageClient() {
   const [newTodo, setNewTodo] = useState("")
   const [isLoading, setLoading] = useState(true)
 
+  if (!userAccount) {
+    return <div>User not found</div>
+  }
+
   useEffect(() => {
-    if (userAccount?.id) {
       fetchTodos(userAccount.id, setTodos, setLoading)
-    }
   }, [userAccount?.id])
 
   const handleAddTodo = () => {
