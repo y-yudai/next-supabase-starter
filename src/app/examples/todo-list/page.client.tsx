@@ -175,13 +175,15 @@ export default function PageClient() {
   const [newTodo, setNewTodo] = useState("")
   const [isLoading, setLoading] = useState(true)
 
+  useEffect(() => {
+    if (userAccount) {
+      fetchTodos(userAccount.id, setTodos, setLoading)
+    }
+  }, [userAccount?.id])
+
   if (!userAccount) {
     return <div>User not found</div>
   }
-
-  useEffect(() => {
-      fetchTodos(userAccount.id, setTodos, setLoading)
-  }, [userAccount?.id])
 
   const handleAddTodo = () => {
     if (newTodo.trim() !== "") {
