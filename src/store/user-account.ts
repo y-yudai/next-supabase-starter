@@ -14,6 +14,7 @@ interface UserAccount {
   tel: string | null
   gender: string | null
   birthday: Date | null
+  profile_picture: string | null
 }
 
 interface UserState {
@@ -21,9 +22,10 @@ interface UserState {
   setUser: (user: UserAccount) => void
   createUserAccount: (email: string, uuid: string) => Promise<void>
   fetchUserAccountById: (uuid: string) => Promise<void>
+  fetchUserAccountByEmail: (email: string) => Promise<void>
   clearUserAccount: () => Promise<void>
-  updateUserAccountById: (id: number) => Promise<void>
-  uploadUserImageById: (id: number) => Promise<void>
+  updateUserAccountById: (userInfo: UserAccount) => Promise<void>
+  uploadUserImageById: (id: number, imageFile: File) => Promise<void>
 }
 
 export const supabase = createBrowserClient()
@@ -49,14 +51,69 @@ const useUserStore = create(
           .single()
         set({ userAccount: data })
       },
+      fetchUserAccountByEmail: async (email) => {
+        const { data, error } = await supabase
+          .from('user_accounts')
+          .select()
+          .eq('email', email)
+          .single()
+        if (data?.profile_picture) {
+          const { data: imageList } = await supabase.storage
+            .from('profile-images')
+            .list('profiles/', { sortBy: { column: 'name', order: 'desc' } })
+          const latestImage = imageList?.find((img) =>
+            img.name.startsWith(`${data.id}_`),
+          )
+          if (latestImage) {
+            data.profile_picture = supabase.storage
+              .from('profile-images')
+              .getPublicUrl(`profiles/${latestImage.name}`).data.publicUrl
+          }
+        }
+        set({ userAccount: data })
+      },
       clearUserAccount: async () => {
         set({ userAccount: null })
       },
-      updateUserAccountById: async (id) => {
-        // TODO: user_accountsテーブルの更新処理
+      updateUserAccountById: async (userInfo: UserAccount) => {
+        const { error } = await supabase
+          .from('user_accounts')
+          .update({
+            first_name: userInfo.first_name,
+            last_name: userInfo.last_name,
+            country_name: userInfo.country_name,
+            zip: userInfo.zip,
+            address1: userInfo.address1,
+            tel: userInfo.tel,
+            gender: userInfo.gender,
+            birthday: userInfo.birthday,
+          })
+          .eq('id', userInfo.id)
+        if (error) {
+          console.error('Error updating profile:', error)
+          throw error
+        }
       },
-      uploadUserImageById: async (id) => {
-        // TODO: 画像アップロード処理
+      uploadUserImageById: async (id: number, imageFile: File) => {
+        const fileExt = imageFile.name.split('.').pop()
+        const timestamp = new Date().toISOString().replace(/[-:.TZ]/g, '')
+        const filePath = `profiles/${id}_${timestamp}.${fileExt}`
+
+        const { error: uploadError } = await supabase.storage
+          .from('profile-images')
+          .upload(filePath, imageFile, { cacheControl: '3600', upsert: false })
+        if (uploadError) throw uploadError
+
+        const { data } = supabase.storage
+          .from('profile-images')
+          .getPublicUrl(filePath)
+        const publicUrl = data.publicUrl
+
+        const { error: updateError } = await supabase
+          .from('user_accounts')
+          .update({ profile_picture: publicUrl })
+          .eq('id', id)
+        if (updateError) throw updateError
       },
     }),
     {

@@ -10,5 +10,6 @@ CREATE TABLE user_accounts (
   tel VARCHAR(20),  -- TelNumber
   gender VARCHAR(10),  -- Gender
   birthday DATE,  -- Birthday
+  profile_picture VARCHAR(255),  -- profile_picture
   CONSTRAINT fk_auth_id FOREIGN KEY (auth_id) REFERENCES auth.users (id) ON DELETE CASCADE
 );
