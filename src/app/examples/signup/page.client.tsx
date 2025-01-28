@@ -19,7 +19,7 @@ import { Label } from '@/components/ui/label'
 
 export default function PageClient() {
   const { register } = useAuthStore()
-  const { createUserAccount } = useUserStore()
+  const { createUserAccount, fetchUserAccountByEmail } = useUserStore()
   const router = useRouter()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -27,6 +27,7 @@ export default function PageClient() {
     try {
       const { data } = await register(email, password)
       await createUserAccount(email, data.user.id)
+      await fetchUserAccountByEmail(email)
     } catch (error) {
       console.error(error)
     } finally {

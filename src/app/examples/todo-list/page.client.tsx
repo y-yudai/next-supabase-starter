@@ -178,15 +178,15 @@ export default function PageClient() {
   useEffect(() => {
     if (userAccount) {
       fetchTodos(userAccount.id, setTodos, setLoading)
+    } else {
+      setLoading(false)
     }
   }, [userAccount?.id])
 
-  if (!userAccount) {
-    return <div>User not found</div>
-  }
+  if (isLoading) return <p>Loading...</p>
 
   const handleAddTodo = () => {
-    if (newTodo.trim() !== "") {
+    if (userAccount && newTodo.trim() !== "") {
       addTodo(userAccount.id, newTodo, setNewTodo, () => fetchTodos(userAccount.id, setTodos, setLoading))
     }
   }
@@ -198,8 +198,6 @@ export default function PageClient() {
   const handleDeleteTodo = (id: number) => {
     deleteTodo(id, setTodos)
   }
-
-  if (isLoading) return <p>Loading...</p>
 
   return (
     <main className="mx-auto mt-12 flex max-w-screen-md justify-center">
