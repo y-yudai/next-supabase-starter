@@ -28,9 +28,9 @@ export default function SettingsPage() {
 
     try {
       const userInfo = {
-        id: userAccount?.id || 0,
-        email: userAccount?.email || null,
-        auth_id: userAccount?.auth_id || '',
+        id: userAccount?.id,
+        auth_id: userAccount?.auth_id,
+        email: userAccount?.email,
         first_name: firstName,
         last_name: lastName,
         country_name: country,
